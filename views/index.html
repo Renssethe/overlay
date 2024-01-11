@@ -13,7 +13,8 @@
     <div class="overlay">
         <div class="cam">
             <div class="cam-container">
-                <video id="video" autoplay playsinline></video>
+                <img id="receivedFrame" src="" alt="Frame">
+                <video id="video" autoplay playsinline style="display: none;"></video>
             </div>
             <img src="/image/gif.gif" alt="" class="placeholder">
             <img src="/image/gif.gif" alt="" class="animation">
@@ -23,7 +24,10 @@
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        var socket = io();
+
         // Vérifier les changements dans localStorage
         window.addEventListener('storage', (event) => {
             if (event.key === 'moveDiv') {
@@ -32,11 +36,30 @@
             }
         });
 
+        socket.on('videoFrame', (data) => {
+            // Utiliser les données reçues pour mettre à jour l'image
+            var img = document.getElementById('receivedFrame');
+            img.src = data;
+        });
+
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
                 var video = document.getElementById('video');
                 video.srcObject = stream;
                 video.play();
+
+                // Capturez et envoyez l'image toutes les secondes (par exemple)
+                setInterval(() => {
+                    var canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    var data = canvas.toDataURL('image/jpeg', 0.06);
+
+                    // Envoyer l'image encodée via WebSocket
+                    socket.emit('videoFrame', data);
+                }, 17);
             }).catch(function(error) {
                 console.log("Erreur lors de l'accès à la caméra: ", error);
             });

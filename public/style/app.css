@@ -37,7 +37,8 @@
     left: 0;
 }
 
-.cam .cam-container video {
+.cam .cam-container video,
+.cam .cam-container img {
     width: 412px !important;
     position: absolute;
     bottom: 0;
