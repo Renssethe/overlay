@@ -1,0 +1,149 @@
+/* Intégre la font super peach dans /public/font/Super Peach.ttf */
+@font-face {
+    font-family: 'Super Peach';
+    src: url('../font/Super Peach.ttf');
+}
+
+.overlay {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    /* background-image: url('../image/cam.png'); */
+}
+
+.cam {
+    width: 412px;
+    height: 263px;
+    position: absolute;
+    right: 280px;
+    top: 817px;
+    font-family: 'Super Peach', serif !important;
+    /* shadow exterieur légère */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.cam .placeholder {
+    width: 412px !important;
+    height: 263px !important;
+}
+
+.cam .cam-container {
+    width: 412px !important;
+    height: 263px !important;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.cam .cam-container video {
+    width: 412px !important;
+    position: absolute;
+    bottom: 0;
+}
+
+.cam .animation {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    animation: animate 20s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        top: 100%;
+        left: 0;
+    }
+
+    16.67% {
+        top: 0;
+        left: 0;
+    }
+
+    33.33% {
+        top: 0;
+        left: 100%;
+    }
+
+    50% {
+        top: 100%;
+        left: 100%;
+    }
+
+    66.67% {
+        top: 0;
+        left: 100%;
+    }
+
+    83.33% {
+        top: 0;
+        left: 0;
+    }
+
+    100% {
+        top: 100%;
+        left: 0;
+    }
+}
+
+/*@keyframes animate {*/
+/*    0% {*/
+/*        background-color: #ff0000;*/
+/*        border-radius: 50%;*/
+/*        width: 0px;*/
+/*        height: 0px;*/
+/*    }*/
+
+/*    50% {*/
+/*        background-color: #ff0000;*/
+/*        border-radius: 50%;*/
+/*        width: 40px;*/
+/*        height: 40px;*/
+/*    }*/
+
+/*    100% {*/
+/*        background-color: #ff0000;*/
+/*        border-radius: 50%;*/
+/*        width: 0px;*/
+/*        height: 0px;*/
+/*    }*/
+/*}*/
+
+
+.red {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    transition: all 5s ease-in-out;
+    position: absolute;
+    right: 100%;
+}
+
+.admin {
+    padding: 25px;
+}
+
+.admin h1 {
+    font-family: 'Super Peach', serif !important;
+    font-size: 50px;
+    color: black;
+    margin-bottom: 25px;
+}
+
+.pannel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.pannel .action {
+    border: 0.5px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+}

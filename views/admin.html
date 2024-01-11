@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Admin Panel</title>
+        <link rel="stylesheet" href="/style/reset.css">
+        <link rel="stylesheet" href="/style/app.css">
+    </head>
+    <body>
+        <div class="admin">
+            <h1>Admin Panel</h1>
+            <div class="pannel">
+                <div class="action">
+                    <button id="moveDiv">Déplacer la Div Rouge</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('moveDiv').addEventListener('click', () => {
+                localStorage.setItem('moveDiv', Date.now());
+            });
+        </script>
+
+    </body>
+</html>
